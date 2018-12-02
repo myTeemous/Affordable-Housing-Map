@@ -1,0 +1,25 @@
+{
+  "name": "Affordable-Housing-Map",
+  "version": "1.0.0",
+  "description": "Affordable housing map",
+  "main": "index.js",
+  "scripts": {
+    "dev":"nodemon app.js",
+    "start":"node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myTeemous/Affordable-Housing-Map.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myTeemous/Affordable-Housing-Map/issues"
+  },
+  "homepage": "https://github.com/myTeemous/Affordable-Housing-Map#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

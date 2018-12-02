@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        var locations = [
+      ["Town Parc at Sherwood\n1521 Sherwood Forest St\nHouston, TX", 29.7946083, -95.5797996, 5, 'Sec8'],
+      ["Goldberg B Nai B Rith Towers\n10909 Fondren Rd\nHouston, TX", 29.6625305, -95.5073776, 4, 'Elder'],
+      ["Cullen Park Apartments\n4700 Wenda St\nHouston, TX", 29.651936, -95.35262809999999, 3, 'Sec8'],
+      ["Ahepa 29 Phase IV\n8401 Rustling Leaves Dr\nHouston, TX", 29.6899833, -95.6284628, 2, 'Elder'],
+      ["Willow Glen Homes\n3230 Boynton Drive\nHouston, TX", 29.629081, -95.42525289999999, 1, 'Sec8']
+    ];
+        function initMap() {
+           let options = {
+            center: {lat:29.7604, lng:-95.3698},
+            zoom: 11
+          }
+            let map = new google.maps.Map(document.getElementById('map'), options);
+
+            let infowindow = new google.maps.InfoWindow();
+            
+            let marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+                
+                if(locations[i][4] === 'Elder'){
+                    marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map,
+                    icon:{
+                        url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                    }
+                    });
+                }
+                else{
+                    marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map
+                    });
+                }
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent(locations[i][0]);
+                    infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB5CnAV4r1wiZFlvErG39Rtx8EWQYLLfk&callback=initMap"
+      async defer></script>
+      <script src="gcode.js"></script>
+</body>
+</html>
